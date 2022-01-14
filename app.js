@@ -1,23 +1,23 @@
 const calculator = {
     add : function(a, b) {
-        console.log(a + b);
+        return a + b;
     },
     minus : function(a, b) {
-        console.log(a - b);
+        return a - b;
     },
     multiply : function(a, b) {
-        console.log(a * b);
+        return a * b;
     },
     divide : function(a, b) {
-        console.log(a / b);
+        return a / b;
     },
     powerof : function(a, b) {
-        console.log(a ** b);
+        return a ** b;
     }
 }
 
-calculator.add(3, 5);
-calculator.minus(3, 5);
-calculator.multiply(3, 5);
-calculator.divide(3, 5);
-calculator.powerof(3, 5);
+console.log(calculator.add(3, 5);
+console.log(calculator.minus(3, 5));
+console.log(calculator.multiply(3, 5));
+console.log(calculator.divide(3, 5));
+console.log(calculator.powerof(3, 5));
