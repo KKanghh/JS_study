@@ -1,19 +1,14 @@
-const title = document.querySelector(".hello h1");
+const h1 = document.querySelector(".hello h1");
 
 function handleTitleClick() {
-    title.style.color = "white";
+    // const clickedClass = "active";
+    // if (h1.classList.contains(clickedClass)) {
+    //     h1.classList.remove(clickedClass);
+    // } else {
+    //     h1.classList.add(clickedClass);
+    // }
+    
+    h1.classList.toggle("active");
 }
 
-function handleMouseEnter() {
-    title.innerText = 'Mouse is here!';
-}
-
-function handleMouseLeave() {
-    title.innerText = "Mouse is gone!"
-}
-
-title.addEventListener("click", handleTitleClick);
-
-title.addEventListener("mouseenter", handleMouseEnter)
-
-title.addEventListener("mouseleave", handleMouseLeave);
+h1.addEventListener("click", handleTitleClick);
