@@ -81,5 +81,9 @@
     background-position: -420px 0;
     width: 22px;
     height: 22px;
-    margin: 17px;
+    /* margin: 17px; */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
