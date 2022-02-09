@@ -31,6 +31,8 @@
     display: inline-block;
     background-position: 0 -158px;
     vertical-align: middle;
+    position: relative;
+    top: -6px;
 }
 
 /* #header-search h2 {
@@ -44,6 +46,8 @@
     border: 2px solid #19ce60;
     vertical-align: middle;
     padding: 0;
+    position: relative;
+    margin-left: 22px;
 }
 
 #header-search fieldset input {
@@ -56,6 +60,7 @@
     font-size: 18px;
     font-family: -apple-system,BlinkMacSystemFont,"Malgun Gothic","맑은 고딕",helvetica,"Apple SD Gothic Neo",sans-serif;
     font-weight: 700;
+    vertical-align: top;
 }
 
 #header-search fieldset button {
@@ -63,7 +68,11 @@
     height: 56px;
     border: none;
     padding: 0;
+    margin: 0;
     background: #19ce60;
+    position: absolute;
+    top: -2px;
+    right: -1px;
     
 }
 
