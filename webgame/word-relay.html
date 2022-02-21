@@ -16,15 +16,17 @@
     <script>
         const $order = document.querySelector("#order");
         let number;
-        while (!number) {
-            number = parseInt(prompt("몇 명이 참가하나요?"));
+        number = parseInt(prompt("몇 명이 참가하나요?"));
+        
+        if (number) {
+            const word_input = document.querySelector("input");
+            const word_button = document.querySelector("button");
+            const $word = document.querySelector("#word");
+            let word;
+            word_button.addEventListener("click", onClick);
+            word_input.addEventListener("input", onInput);
+            word_input.focus();
         }
-        const word_input = document.querySelector("input");
-        const word_button = document.querySelector("button");
-        const $word = document.querySelector("#word");
-        let word;
-
-        word_input.focus();
 
         function onClick(event) {
             if ((!word || word[word.length - 1] === word_input.value[0]) && word_input.value.length === 3) {
@@ -43,8 +45,6 @@
             console.log('글자 입력', event.target.value);
         }
 
-        word_button.addEventListener("click", onClick);
-        word_input.addEventListener("input", onInput);
     </script>
 </body>
 </html>

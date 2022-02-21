@@ -1,0 +1,27 @@
+#calculator {
+    height: 237px;
+    width: 200px;
+    border: 1px black solid;
+    padding: 10px;
+}
+
+#result {
+    height: 30px;
+    margin-bottom: 5px;
+    text-align: right;
+    border: 1px solid black;
+}
+
+#num-button {
+    display: flex;
+    justify-content: space-between;
+    align-content: space-between;
+    flex-wrap: wrap;
+    height: 200px;
+}
+
+button {
+    width: 45px;
+    height: 45px;
+}
+
