@@ -1,0 +1,40 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>숫자야구</title>
+    </head>
+    <body>
+        <form id="form">
+            <input required maxlength="4" type="text" id="input"
+            minlength="4" pattern="^(?!.*(.).*\1)\d{4}">
+            <button>확인</button>
+        </form>
+        <div id="logs"></div>
+        <script>
+            const $input = document.querySelector('#input');
+            const $form = document.querySelector('#form');
+            const $logs = document.querySelector('#logs');
+            
+            const answer = [];
+            while (answer.length < 4) {
+                const temp = Math.ceil(Math.random() * 9);
+                if (answer.includes(temp)) {
+                    continue;
+                }
+                answer[answer.length] = temp;
+            }
+
+            console.log(answer);
+
+            function checkInput(input) {}
+            
+            function onFormSubmit(event) {
+                event.preventDefault();
+                const value = $input.value;
+                $input.value = '';
+                const valid = checkInput(value);
+            }
+            $form.addEventListener("submit", onFormSubmit);
+        </script>
+    </body>
+</html>
