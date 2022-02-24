@@ -33,7 +33,7 @@
                     return alert('중복되지 않게 입력해 주세요.');
                 }
                 if (tries.includes(input)) {
-                    return alert('이미 시도한 값입니다.')
+                    return alert('이미 시도한 값입니다.');
                 } 
                 return true;
             }
@@ -49,8 +49,9 @@
                     return;
                 }
                 if (tries.length >= 9) {
-                    const message = document.createTextNode(`패배! 정답은 ${answer.join('')}`);
-                    $logs.appendChild(message);
+                    // const message = document.createTextNode(`패배! 정답은 ${answer.join('')}`);
+                    $logs.append(`패배! 정답은 ${answer.join('')}`);
+                    // $logs.appendChild(message);
                     return;
                 }
                 

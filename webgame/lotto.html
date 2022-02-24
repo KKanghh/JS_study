@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>로또추첨기</title>
+    <style>
+        .ball {
+            display: inline-block;
+            border: 1px solid black;
+            border-radius: 20px;
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            font-size: 20px;
+            text-align: center;
+            margin-right: 20px;
+        }
+    </style>
+    <link rel="stylesheet" href="./ball.css">
+</head>
+<body>
+    <div id="result">추첨 결과는? </div>
+    <div id="bonus">보너스 </div>
+    <script>
+        const candidate = Array(45).fill().map((v, i) => i + 1);
+        const shuffle = [];
+        while (candidate.length > 0) {
+            const random = Math.floor(Math.random() * candidate.length);
+            const spliceArray = candidate.splice(random, 1);
+            shuffle.push(spliceArray[0]);
+        }
+        const winBalls = shuffle.slice(0, 6).sort((a, b) => a - b);
+        const bonus = shuffle[6];
+        console.log(winBalls, bonus);
+
+        const $bonus = document.querySelector('#bonus');
+        const $result = document.querySelector('#result');
+        for (let i = 0; i < winBalls.length; i++) {
+            setTimeout(drawBalls, 1000 * (i + 1), winBalls[i], $result);
+        }
+        setTimeout(drawBalls, 7000, bonus, $bonus)
+
+        function drawBalls(ballNumber, $parent) {
+            const $ball = document.createElement('div');
+            $ball.className = 'ball';
+            $ball.textContent = ballNumber;
+            colorize($ball);
+            $parent.append($ball);
+        }
+
+        function colorize(element) {
+            const ballNumber = parseInt(element.textContent);
+            if (ballNumber < 10) {
+                element.classList.add("red");
+            } else if (ballNumber < 20) {
+                element.classList.add("orange");
+            } else if (ballNumber < 30) {
+                element.classList.add("yellow");
+            } else if (ballNumber < 40) {
+                element.classList.add("blue");
+            } else {
+                element.classList.add("green");
+            }
+        }
+        
+    </script>
+</body>
+</html>
