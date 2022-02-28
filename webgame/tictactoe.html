@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>틱택토</title>
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+
+        td {
+            border: 1px solid black;
+            width: 40px;
+            height: 40px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        const { body } = document;
+        const $table = document.createElement('table');
+        const $result = document.createElement('div');
+        const rows = [];
+        let turn = 'O'
+
+        function callback(event) {
+            if (event.target.textContent !== '') { // 칸이 이미 채워져 있을 때
+                console.log('빈칸이 아닙니다.');
+            } else { // 빈칸이면
+                console.log('빈칸입니다.');
+                event.target.textContent = turn;
+                turn = turn === 'X' ? 'O' : 'X';
+            }
+        };
+
+        for (let i = 0; i < 3; i++) {
+            const $tr = document.createElement('tr');
+            const cells = [];
+            for (let j = 0; j < 3; j++) {
+                const $td = document.createElement('td');
+                cells.push($td);
+                $tr.appendChild($td);
+            }
+            rows.push(cells);
+            $table.appendChild($tr);
+        }
+        $table.addEventListener('click', callback);
+        body.appendChild($table);
+        body.appendChild($result);
+    </script>
+</body>
+</html>
