@@ -24,16 +24,49 @@
         const $table = document.createElement('table');
         const $result = document.createElement('div');
         const rows = [];
-        let turn = 'O'
+        let turn = 'O';
+        let clickable = true;
 
         function callback(event) {
+            if (!clickable) {
+                console.log('컴퓨터의 선택 중입니다.');
+                return;
+            }
             if (event.target.textContent !== '') { // 칸이 이미 채워져 있을 때
                 console.log('빈칸이 아닙니다.');
             } else { // 빈칸이면
                 console.log('빈칸입니다.');
                 event.target.textContent = turn;
+                const hasWinner = checkWinner(event.target);
+                if (hasWinner) {
+                    $result.textContent = `${turn}님이 승리!`;
+                    $table.removeEventListener('click', callback);
+                    return;
+                }
+                const draw = rows.flat().every((cell) => cell.textContent);
+
+                if (draw) {
+                    $result.textContent = '무승부';
+                    return;
+                }
                 turn = turn === 'X' ? 'O' : 'X';
             }
+
+            const com = rows.flat().filter((cell) => !cell.textContent);
+            const comSelect = com[Math.floor(Math.random() * com.length)];
+            clickable = false;
+            setTimeout(() => {
+                comSelect.textContent = turn;
+                const comWinner = checkWinner(comSelect);
+                if (comWinner) {
+                    $result.textContent = `${turn}님이 승리!`;
+                    $table.removeEventListener('click', callback);
+                    return;
+                }
+                turn = turn === 'X' ? 'O' : 'X';
+                clickable = true;
+            }, 500);
+            
         };
 
         for (let i = 0; i < 3; i++) {
@@ -50,6 +83,46 @@
         $table.addEventListener('click', callback);
         body.appendChild($table);
         body.appendChild($result);
+
+        function checkWinner(target) {
+            let rowIndex = target.parentNode.rowIndex;
+            let cellIndex = target.cellIndex;
+            let hasWinner = false;
+
+            if (
+                rows[rowIndex][0].textContent === turn &&
+                rows[rowIndex][1].textContent === turn &&
+                rows[rowIndex][2].textContent === turn
+            ) {
+                hasWinner = true;
+            }
+
+            if (
+                rows[0][cellIndex].textContent === turn &&
+                rows[1][cellIndex].textContent === turn &&
+                rows[2][cellIndex].textContent === turn 
+            ) {
+                hasWinner = true;
+            }
+
+            if (
+                rows[0][0].textContent === turn &&
+                rows[1][1].textContent === turn &&
+                rows[2][2].textContent === turn 
+            ) {
+                hasWinner = true;
+            }
+
+            if (
+                rows[0][2].textContent === turn &&
+                rows[1][1].textContent === turn &&
+                rows[2][0].textContent === turn 
+            ) {
+                hasWinner = true;
+            }
+
+            return hasWinner;
+        }
     </script>
 </body>
 </html>
