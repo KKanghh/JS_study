@@ -27,6 +27,22 @@
         let turn = 'O';
         let clickable = true;
 
+        function reset() {
+            const $button = document.createElement('button');
+            $button.textContent = '다시하기';
+            $button.addEventListener('click', () => {
+                for (let i = 0; i < 3; i++) {
+                    for (let j = 0; j < 3; j++) {
+                        rows[i][j].textContent = '';
+                    }
+                }
+                $table.addEventListener('click', callback);
+                $button.remove();
+                $result.textContent = '';
+            });
+            body.appendChild($button);
+        }
+
         function callback(event) {
             if (!clickable) {
                 console.log('컴퓨터의 선택 중입니다.');
@@ -41,6 +57,7 @@
                 if (hasWinner) {
                     $result.textContent = `${turn}님이 승리!`;
                     $table.removeEventListener('click', callback);
+                    reset();
                     return;
                 }
                 const draw = rows.flat().every((cell) => cell.textContent);
@@ -60,6 +77,7 @@
                 const comWinner = checkWinner(comSelect);
                 if (comWinner) {
                     $result.textContent = `${turn}님이 승리!`;
+                    reset();
                     $table.removeEventListener('click', callback);
                     return;
                 }
