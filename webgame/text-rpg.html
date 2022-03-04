@@ -31,9 +31,9 @@
     </form>
     
     <form id="battle-menu" style="display: none;">
-        <div id="battle-1"></div>
-        <div id="battle-2"></div>
-        <div id="battle-3"></div>
+        <div id="battle-1">1.공격</div>
+        <div id="battle-2">2.회복</div>
+        <div id="battle-3">3.도망</div>
         <input id="battle-input" />
         <button id="battle-button">입력</button>
     </form>
@@ -66,6 +66,14 @@
             hp: 100,
             xp: 0,
             att: 10,
+            attack(monster) {
+                monster.hp -= this.att;
+                this.hp -= monster.att;
+            },
+            heal(monster) {
+                this.hp += 20;
+                this.hp -= monster.att;
+            }
         };
         let monster = null;
         const monsterList = [
@@ -106,6 +114,22 @@
                 
             }
         });
+
+        $battleMenu.addEventListener('submit', (event) => {
+            event.preventDefault();
+            const input = event.target["battle-input"].value;
+            if (input === "1") {
+                hero.attack(monster);
+                // monster.attack(hero);
+                $heroHp.textContent = `HP: ${hero.hp}/${hero.maxHp}`;
+                $monsterHp.textContent = `HP: ${monster.hp}/${monster.maxHp}`;
+                $message.textContent = `${hero.att}의 데미지를 주고, ${monster.att}의 데미지를 받았다.`;
+            } else if (input === '2') {
+
+            } else if (input === '3') {
+
+            }
+        })
     </script>
 </body>
 </html>
