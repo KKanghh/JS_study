@@ -115,7 +115,14 @@
                     const time = parseFloat(endTime - startTime) / 1000;
                     setTimeout(() => {
                         alert(`축하합니다. ${time}s 소요`);
-                        resetGame();
+                        const $div = document.createElement('div');
+                        $div.style.textAlign = 'center';
+                        const $button = document.createElement('button');
+                        $button.textContent = '다시하기';
+                        $button.addEventListener('click', resetGame);
+                        $div.appendChild($button);
+                        $wrapper.append($div);
+                        // resetGame();
                     }, 1000);
                 }
                 return;
@@ -159,7 +166,7 @@
                 total = parseInt(prompt('카드개수를 입력해주세요'));
                 console.log(total);
             }
-            selectedColor = colors.spice(0, total / 2);
+            selectedColor = colors.slice(0, total / 2);
             colorCopy = selectedColor.concat(selectedColor);
             shuffled = [];
             completed = [];
