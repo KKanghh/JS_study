@@ -73,7 +73,7 @@
                         $target.textContent = cellData;
                         $target.className = `color-${cellData}`;
                     } else {
-                        // $target.textContent = '';
+                        $target.textContent = '';
                         $target.className = '';
                     }
                 });
@@ -81,27 +81,92 @@
         }
 
         startGame();
+        data = [
+            [0, 2, 4, 2],
+            [0, 0 ,8, 0],
+            [2, 2, 2, 2],
+            [0, 16, 0 ,4],
+        ];
+        draw();
 
-
-        window.addEventListener('keydown', (event) => {
-            console.log('keydown', event);
-        });
+        function moveCells(direction) {
+            const newData = [[], [], [], []];
+            switch (direction) {
+                case 'left':
+                    data.forEach((rowData, i) => {
+                        rowData.forEach((cellData, j) => {
+                            if (cellData) {
+                                newData[i].push(cellData);
+                            }
+                        });
+                    });
+                    console.log(newData);
+                    [1, 2, 3, 4].forEach((rowData, i) => {
+                        [1, 2, 3, 4].forEach((cellData, j) => {
+                            data[i][j] = newData[i][j] || 0;
+                        });
+                    });
+                    break;
+                case 'right':
+                    data.forEach((rowData, i) => {
+                        rowData.forEach((cellData, j) => {
+                            if (cellData) {
+                                newData[i].push(cellData);
+                            }
+                        });
+                    });
+                    console.log(newData);
+                    for (let i = 0; i < 4; i++) {
+                        data[i] = [];
+                        console.log(data);
+                        for (let j = 0; j < 4 - newData[i].length; j++) {
+                            data[i].push(0);
+                        }
+                        for (j = 0; j < newData[i].length; j++) {
+                            data[i].push(newData[i][j]);
+                        }
+                    }
+                    break;
+                case 'up':
+                    break;
+                case 'down':
+                    break;
+            };
+            draw();
+        }
 
         window.addEventListener('keyup', (event) => {
-            console.log('keyup', event);
+            if (event.key === 'ArrowUp') {
+                moveCells('up');
+            } else if (event.key === 'ArrowDown') {
+                moveCells('down');
+            } else if (event.key === 'ArrowLeft') {
+                moveCells('left');
+            } else if (event.key === 'ArrowRight') {
+                moveCells('right');
+            }
         });
 
+        let startCoord;
         window.addEventListener('mousedown', (event) => {
-            console.log('mousedown', event);
+            startCoord = [event.clientX, event.clientY];
         });
 
         window.addEventListener('mouseup', (event) => {
-            console.dir(event);
-        })
+           const endCoord = [event.clientX, event.clientY];
+           const diffX = endCoord[0] - startCoord[0];
+           const diffY = endCoord[1] - startCoord[1];
+           if (diffX < 0 && Math.abs(diffX) > Math.abs(diffY)) {
+               moveCells('left');
+           } else if (diffX > 0 && Math.abs(diffX) > Math.abs(diffY)) {
+               moveCells('right');
+           } else if (diffX > 0 && Math.abs(diffX) <= Math.abs(diffY)) {
+               moveCells('down');
+           } else if (diffX < 0 && Math.abs(diffX) <= Math.abs(diffY)) {
+               moveCells('up');
+           }
+        });
 
-        window.addEventListener('mousemove', (event) => {
-            console.log('mousemove', event);
-        })
     </script>
 </body>
 </html>
