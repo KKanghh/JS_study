@@ -3,7 +3,7 @@ const sequelize = require('sequelize');
 
 module.exports = class User extends Sequelize.Model {
     static init(sequelize) {
-        return super this.init({
+        return super.init({
             email: {
                 type: Sequelize.STRING(40),
                 allowNull: true,
@@ -40,12 +40,12 @@ module.exports = class User extends Sequelize.Model {
 
     static associate(db) {
         db.User.hasMany(db.Post);
-        db.User.belongToMany(db.User, {
+        db.User.belongsToMany(db.User, {
             foreignKey: 'followingId',
             as: 'Followers',
             through: 'Follow',
         });
-        db.User.belongToMany(db.User, {
+        db.User.belongsToMany(db.User, {
             foreignKey: 'followerId',
             as: 'Followings',
             through: 'Follow',
