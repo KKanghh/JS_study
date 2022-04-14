@@ -134,5 +134,3 @@ document.getElementById('comment-form').addEventListener('submit', async (e) => 
     e.target.userid.value = '';
     e.target.comment.value = '';
 });
-
-console.log('방구');
