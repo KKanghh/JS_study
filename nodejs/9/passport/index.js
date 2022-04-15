@@ -11,10 +11,8 @@ module.exports = () => {
 
     passport.deserializeUser((id, done) => {
         if (presentUser?.id === id) {
-            console.log('33333333333333333333');
             return done(null, presentUser);
         }
-        console.log('기존 유저:', presentUser);
         User.findOne({ 
             where: {id},
             include: [{
