@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form test</title>
+</head>
+<body>
+    <form action="/hi" method="post">
+        <div>
+            <input type="checkbox" name="check1">
+            <label for="check1">1</label>
+            <input type="checkbox" name="check2">
+            <label for="check2">2</label>
+            <input type="checkbox" name="check3">
+            <label for="check3">3</label>
+        </div>
+        <input type="text" id="text" name="text">
+        <input type="submit" value="안녕">
+    </form>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <!-- <script>
+        $form = document.querySelector('form');
+        $form.addEventListener('submit', (e) => {
+            // e.preventDefault();
+            console.log($form.text.value);
+            axios.post('/hi', {text: $form.text.value});
+        })
+    </script> -->
+</body>
+</html>
