@@ -8,6 +8,18 @@ const config = require('../config/config.json')[env];
 const db = {};
 
 const sequelize = new Sequelzie(config.database, config.username, config.password, config);
+
 db.sequelize = sequelize;
+db.User = User;
+db.Good = Good;
+db.Auction = Auction;
+
+User.init(sequelize);
+Good.init(sequelize);
+Auction.init(sequelize);
+
+User.associate(db);
+Good.associate(db);
+Auction.associate(db);
 
 module.exports = db;
