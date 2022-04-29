@@ -6,6 +6,11 @@
     "author": "king",
     "license": "ISC",
     "bin": {
-        "cli": "./index.js"
+        "cli": "./command.js"
+    },
+    "dependencies": {
+        "chalk": "^5.0.1",
+        "commander": "^5.1.0",
+        "inquirer": "^8.2.4"
     }
 }
