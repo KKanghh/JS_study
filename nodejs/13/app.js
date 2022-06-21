@@ -14,7 +14,7 @@ const { sequelize } = require('./models');
 const passportConfig = require('./passport');
 const sse = require('./sse');
 const webSocket = require('./socket');
-const checkAuction = require('./checjAuction');
+const checkAuction = require('./checkAuction');
 
 const app = express();
 passportConfig();

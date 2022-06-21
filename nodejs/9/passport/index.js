@@ -10,7 +10,7 @@ module.exports = () => {
     });
 
     passport.deserializeUser((id, done) => {
-        if (presentUser?.id === id) {
+        if (presentUser.id === id) {
             return done(null, presentUser);
         }
         User.findOne({ 
