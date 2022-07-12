@@ -4,7 +4,7 @@ import Expenses from "./components/Expenses/Expenses";
 import NewExpense from "./components/NewExpense/NewExpense";
 
 function App() {
-  const [expenses, setExpenses] = useState([
+  const FIRST_EXPENSES = [
     {
       id: "e1",
       title: "Toilet Paper",
@@ -24,10 +24,12 @@ function App() {
       amount: 450,
       date: new Date(2021, 5, 12),
     },
-  ]);
+  ];
+
+  const [expenses, setExpenses] = useState(FIRST_EXPENSES);
 
   function addExpenseHandler(expense) {
-    setExpenses((prevState) => [...prevState, expense]);
+    setExpenses((prevState) => [expense, ...prevState]);
     console.log(expense);
   }
 
