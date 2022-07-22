@@ -4,12 +4,11 @@ import Button from "../UI/Button";
 
 import styles from "./AddUser.module.css";
 import ErrorModal from "../UI/ErrorModal";
-import Wrapper from "../Helper/Wrapper";
 
 const AddUser = (props) => {
   const [enteredUsername, setEnteredUsername] = useState("");
   const [enteredAge, setEnteredAge] = useState("");
-  const [isValid, setIsValid] = useState(true);
+  const [error, setError] = useState();
 
   const usernameChangeHandler = (event) => {
     setEnteredUsername(event.target.value);
@@ -22,11 +21,17 @@ const AddUser = (props) => {
   const AddUserHandler = (event) => {
     event.preventDefault();
     if (enteredUsername.trim().length === 0 || enteredAge.trim().length === 0) {
-      setIsValid(false);
+      setError({
+        title: "Invalid Input",
+        message: "Please enter a valid name and age (non-empty values).",
+      });
       return;
     }
     if (+enteredAge < 1) {
-      setIsValid(false);
+      setError({
+        title: "Invalid age",
+        message: "Please enter a valid age (>0).",
+      });
       return;
     }
     props.onNewUser({
@@ -39,24 +44,12 @@ const AddUser = (props) => {
   };
 
   const validHandler = () => {
-    setIsValid(true);
+    setError(null);
   };
 
-  let modal = "";
-
-  if (!isValid) {
-    modal = (
-      <ErrorModal
-        title="An error occured!"
-        message="Something went wrong"
-        onClick={validHandler}
-      />
-    );
-  }
-
   return (
-    <Wrapper>
-      {modal}
+    <React.Fragment>
+      {error && <ErrorModal error={error} onClick={validHandler} />}
       <Card className={styles.input}>
         <form onSubmit={AddUserHandler}>
           <label htmlFor="username">Username</label>
@@ -76,7 +69,7 @@ const AddUser = (props) => {
           <Button type="submit">Add User</Button>
         </form>
       </Card>
-    </Wrapper>
+    </React.Fragment>
   );
 };
 
