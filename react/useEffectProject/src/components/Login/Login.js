@@ -9,7 +9,7 @@ const passwordValidationCheck = (password) => password.trim().length > 6;
 
 const makeReducer = (validationCheck) => (state, action) => {
   if (action.type === "USER_INPUT") {
-    return { value: action.val, isValid: state.isValid };
+    return { value: action.val, isValid: validationCheck(action.val) };
   }
   if (action.type === "INPUT_BLUR") {
     return { value: state.value, isValid: validationCheck(state.value) };
