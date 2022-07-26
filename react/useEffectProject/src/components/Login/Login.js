@@ -9,7 +9,7 @@ const passwordValidationCheck = (password) => password.trim().length > 6;
 
 const makeReducer = (validationCheck) => (state, action) => {
   if (action.type === "USER_INPUT") {
-    return { value: action.val, isValid: validationCheck(action.val) };
+    return { value: action.val, isValid: state.isValid };
   }
   if (action.type === "INPUT_BLUR") {
     return { value: state.value, isValid: validationCheck(state.value) };
@@ -39,7 +39,6 @@ const Login = (props) => {
 
   const { isValid: emailIsValid } = emailState;
   const { isValid: passwordIsValid } = passwordState;
-
   useEffect(() => {
     const timer = setTimeout(() => {
       console.log("timeout");
@@ -87,7 +86,7 @@ const Login = (props) => {
             id="email"
             value={emailState.value}
             onChange={emailChangeHandler}
-            //onBlur={validateEmailHandler}
+            onBlur={validateEmailHandler}
           />
         </div>
         <div
@@ -101,7 +100,7 @@ const Login = (props) => {
             id="password"
             value={passwordState.value}
             onChange={passwordChangeHandler}
-            //onBlur={validatePasswordHandler}
+            onBlur={validatePasswordHandler}
           />
         </div>
         <div className={classes.actions}>
