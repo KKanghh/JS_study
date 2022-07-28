@@ -1,0 +1,16 @@
+.something {
+  padding: 10px;
+  width: 40%;
+  margin: 4.5rem auto 0;
+  text-align: center;
+  background-color: #bc6c25;
+}
+
+.something h1 {
+  width: auto;
+}
+
+.something p {
+  margin: 15px;
+  font-weight: 400;
+}

@@ -1,0 +1,9 @@
+.foodsList {
+  margin: 20px auto;
+  padding: 20px;
+  width: 55%;
+}
+
+.foodsList ul {
+  list-style: none;
+}
