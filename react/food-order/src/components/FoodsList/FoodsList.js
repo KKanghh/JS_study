@@ -1,20 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import Food from "./Food";
 import Card from "../UI/Card";
 import styles from "./FoodsList.module.css";
+import CartContext from "../../store/cart-context";
 
 const FoodsList = (props) => {
-  const foods = [
-    {
-      name: "Sushi",
-      detail: "Finest fish and veggies",
-      price: 22.99,
-    },
-  ];
+  const ctx = useContext(CartContext);
+  const foods = ctx.foods;
 
-  let contents = foods.map((food) => (
-    <Food name={food.name} detail={food.detail} price={food.price} />
-  ));
+  let contents = foods.map((food) => <Food key={food.id} food={food} />);
 
   return (
     <Card className={styles.foodsList}>

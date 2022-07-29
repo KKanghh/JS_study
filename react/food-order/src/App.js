@@ -2,14 +2,14 @@ import React from "react";
 
 import Header from "./components/Header/Header";
 import "./App.css";
-import Something from "./components/Main/Something";
+import Introduce from "./components/Main/Introduce";
 import FoodsList from "./components/FoodsList/FoodsList";
 
 function App() {
   return (
     <React.Fragment>
       <Header></Header>
-      <Something></Something>
+      <Introduce></Introduce>
       <FoodsList></FoodsList>
     </React.Fragment>
   );
