@@ -1,8 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import Input from "../../UI/Input";
 import styles from "./MealItemForm.module.css";
 
 const MealItemForm = (props) => {
+  const [inputValue, setInputValue] = useState("1");
+
+  const inputHandler = (event) => {
+    setInputValue(event.target.value);
+  };
+
+  const buttonClickHandler = (event) => {
+    event.preventDefault();
+    props.onClick(inputValue);
+    setInputValue("1");
+  };
+
   return (
     <form className={styles.form}>
       <Input
@@ -13,10 +25,11 @@ const MealItemForm = (props) => {
           min: "1",
           max: "5",
           step: "1",
-          defaultValue: "1",
+          value: inputValue,
+          onChange: inputHandler,
         }}
       />
-      <button>+ Add</button>
+      <button onClick={buttonClickHandler}>+ Add</button>
     </form>
   );
 };
