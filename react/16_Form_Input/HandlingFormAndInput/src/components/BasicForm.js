@@ -7,7 +7,7 @@ const BasicForm = (props) => {
     hasError: fnameHasError,
     changeHandler: fnameChangeHandler,
     blurHandler: fnameBlurHandler,
-    reset: resetFnameHandler,
+    reset: resetFname,
   } = useForm((value) => value.trim() !== "");
 
   const {
@@ -16,7 +16,7 @@ const BasicForm = (props) => {
     hasError: lnameHasError,
     changeHandler: lnameChangeHandler,
     blurHandler: lnameBlurHandler,
-    reset: resetLnameHandler,
+    reset: resetLname,
   } = useForm((value) => value.trim() !== "");
 
   const {
@@ -25,22 +25,23 @@ const BasicForm = (props) => {
     hasError: emailHasError,
     changeHandler: emailChangeHandler,
     blurHandler: emailBlurHandler,
-    reset: resetEmailHandler,
+    reset: resetEmail,
   } = useForm((value) => value.includes("@"));
 
   const formIsValid = fnameIsValid && lnameIsValid && emailIsValid;
 
   const formSubmissionHandler = (event) => {
     event.preventDefault();
+    if (!formIsValid) return;
     const user = {
       firstName: enteredFname,
       lastName: enteredLname,
       email: enteredEmail,
     };
     console.log(user);
-    resetFnameHandler();
-    resetLnameHandler();
-    resetEmailHandler();
+    resetFname();
+    resetLname();
+    resetEmail();
   };
 
   return (
@@ -55,6 +56,9 @@ const BasicForm = (props) => {
             onChange={fnameChangeHandler}
             onBlur={fnameBlurHandler}
           />
+          {fnameHasError && (
+            <p className="error-text">Please enter a first name.</p>
+          )}
         </div>
         <div className={`form-control ${lnameHasError ? "invalid" : ""}`}>
           <label htmlFor="name">Last Name</label>
@@ -65,6 +69,9 @@ const BasicForm = (props) => {
             onChange={lnameChangeHandler}
             onBlur={lnameBlurHandler}
           />
+          {lnameHasError && (
+            <p className="error-text">Please enter a last name.</p>
+          )}
         </div>
       </div>
       <div className={`form-control ${emailHasError ? "invalid" : ""}`}>
@@ -77,6 +84,9 @@ const BasicForm = (props) => {
           onBlur={emailBlurHandler}
         />
       </div>
+      {emailHasError && (
+        <p className="error-text">Please enter a valid email address.</p>
+      )}
       <div className="form-actions">
         <button disabled={!formIsValid}>Submit</button>
       </div>
