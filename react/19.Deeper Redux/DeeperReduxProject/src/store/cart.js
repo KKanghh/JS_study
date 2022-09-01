@@ -8,7 +8,6 @@ const cartSlice = createSlice({
   reducers: {
     add(state, action) {
       const itemIndex = state.cart.findIndex((e) => e.id === action.payload.id);
-      console.log(itemIndex);
       if (itemIndex === -1) {
         state.cart.push({
           id: action.payload.id,
@@ -21,7 +20,12 @@ const cartSlice = createSlice({
       }
       state.totalAmount += action.payload.price;
     },
-    sub(state, action) {},
+    sub(state, action) {
+      const itemIndex = state.cart.findIndex((e) => e.id === action.payload.id);
+      console.log(itemIndex);
+      if (state.cart[itemIndex].amount > 1) state.cart[itemIndex].amount--;
+      else state.cart.splice(itemIndex, 1);
+    },
   },
 });
 
