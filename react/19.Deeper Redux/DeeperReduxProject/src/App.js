@@ -4,7 +4,7 @@ import Cart from "./components/Cart/Cart";
 import Layout from "./components/Layout/Layout";
 import Products from "./components/Shop/Products";
 import Notification from "./components/UI/Notification";
-import { toggleCartActions } from "./store/toggleCart";
+import { sendCartData } from "./store/cart";
 
 let isInitial = true;
 
@@ -15,49 +15,11 @@ function App() {
   const notification = useSelector((state) => state.toggleCart.notification);
 
   useEffect(() => {
-    const sendCartDate = async () => {
-      dispatch(
-        toggleCartActions.showNotification({
-          status: "pending",
-          title: "sending",
-          message: "sending cart data",
-        })
-      );
-      const response = await fetch(
-        "https://react-http-10f07-default-rtdb.firebaseio.com/cart.json",
-        {
-          method: "PUT",
-          body: JSON.stringify(cart),
-        }
-      );
-
-      if (!response.ok) {
-        throw new Error("Sending cart data failed.");
-      }
-
-      dispatch(
-        toggleCartActions.showNotification({
-          status: "success",
-          title: "success",
-          message: "sending cart data",
-        })
-      );
-    };
-
     if (isInitial) {
       isInitial = false;
       return;
     }
-
-    sendCartDate().catch((error) => {
-      dispatch(
-        toggleCartActions.showNotification({
-          status: "error",
-          title: "Error",
-          message: "sending cart data failed",
-        })
-      );
-    });
+    dispatch(sendCartData(cart));
   }, [cart, dispatch]);
 
   return (
