@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const YOUR_API_KEY = "ONcZADHoDXvlp6CqXGH/SQ";
+      const url = `https://api.odsay.com/v1/api/searchPubTransPathT?SX=126.9027279&SY=37.5349277&EX=126.9145430&EY=37.5499421&apiKey=${YOUR_API_KEY}&lang=0`;
+
+      function searchPubTransPathAJAX() {
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", url, true);
+        xhr.send();
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState == 4 && xhr.status == 200) {
+            console.log(xhr.responseText); // <- xhr.responseText 로 결과를 가져올 수 있음
+          }
+        };
+      }
+      searchPubTransPathAJAX();
+    </script>
+  </body>
+</html>
