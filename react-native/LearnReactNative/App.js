@@ -7,14 +7,19 @@
 
 import React from 'react';
 
-import {SafeAreaView} from 'react-native';
+import {Text, View} from 'react-native';
 import Greetings from './components/Greetings';
 
 function App() {
+  const name = 'JSX';
+
   return (
-    <SafeAreaView>
-      <Greetings />
-    </SafeAreaView>
+    <>
+      <View>
+        <Greetings name={name} />
+      </View>
+      <Text>Extra Text!</Text>
+    </>
   );
 }
 
