@@ -13,9 +13,13 @@ import Greetings from './components/Greetings';
 function App() {
   return (
     <SafeAreaView>
-      <Greetings name={'king'} />
+      <Greetings />
     </SafeAreaView>
   );
 }
+
+Greetings.defaultProps = {
+  name: 'React Native',
+};
 
 export default App;
