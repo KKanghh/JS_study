@@ -8,18 +8,16 @@
 import React from 'react';
 
 import {Text, View} from 'react-native';
+import Box from './components/Box';
 import Greetings from './components/Greetings';
 
 function App() {
   const name = 'JSX';
 
   return (
-    <>
-      <View>
-        <Greetings name={name} />
-      </View>
-      <Text>Extra Text!</Text>
-    </>
+    <View>
+      <Box rounded={true} size="large" color="pink" />
+    </View>
   );
 }
 
