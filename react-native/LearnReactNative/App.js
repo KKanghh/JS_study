@@ -10,12 +10,12 @@ import React from 'react';
 import {SafeAreaView} from 'react-native';
 import Greetings from './components/Greetings';
 
-const App = () => {
+function App() {
   return (
     <SafeAreaView>
-      <Greetings />
+      <Greetings name={'king'} />
     </SafeAreaView>
   );
-};
+}
 
 export default App;
