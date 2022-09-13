@@ -16,13 +16,9 @@ function App() {
 
   return (
     <View>
-      <Box rounded={true} size="large" color="pink" />
+      <Box rounded={true} color="#123241" size="small" />
     </View>
   );
 }
-
-Greetings.defaultProps = {
-  name: 'React Native',
-};
 
 export default App;

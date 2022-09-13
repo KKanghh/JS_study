@@ -9,4 +9,8 @@ function Greetings(props) {
   );
 }
 
+Greetings.defaultProps = {
+  name: 'React Native',
+};
+
 export default Greetings;
