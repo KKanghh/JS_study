@@ -4,13 +4,12 @@ import {View, StyleSheet} from 'react-native';
 function Box({rounded, size, color}) {
   return (
     <View
-      // style={[
-      //   styles.box,
-      //   rounded ? styles.rounded : null,
-      //   sizes[size],
-      //   {backgroundColor: color},
-      // ]}
-      style={{backgroundColor: 'red', width: 64, height: 64}}
+      style={[
+        styles.box,
+        rounded ? styles.rounded : null,
+        sizes[size],
+        {backgroundColor: color},
+      ]}
     />
   );
 }

@@ -5,19 +5,24 @@
  * @format
  */
 
-import React from 'react';
+import React, {useState} from 'react';
 
-import {Text, View} from 'react-native';
+import {SafeAreaView, Button} from 'react-native';
 import Box from './components/Box';
 import Greetings from './components/Greetings';
 
 function App() {
-  const name = 'JSX';
+  const [visible, setVisible] = useState(true);
+
+  const onPress = () => {
+    setVisible(state => !state);
+  };
 
   return (
-    <View>
-      <Box rounded={true} color="#123241" size="small" />
-    </View>
+    <SafeAreaView>
+      <Button title="토글" onPress={onPress} />
+      {!visible && <Box rounded={true} color="blue" size="large" />}
+    </SafeAreaView>
   );
 }
 
