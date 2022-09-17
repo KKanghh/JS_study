@@ -20,6 +20,7 @@ const NewCommentForm = (props) => {
       quoteId: props.quoteId,
       commentData: { text: commentTextRef.current.value },
     });
+    commentTextRef.current.value = "";
 
     // optional: Could validate here
 
