@@ -10,7 +10,7 @@ import {
   Keyboard,
 } from 'react-native';
 
-function AddToDo() {
+function AddToDo({onInsert}) {
   const [text, setText] = useState('');
 
   const button = (
@@ -20,6 +20,7 @@ function AddToDo() {
   );
 
   const onPress = () => {
+    onInsert(text);
     setText('');
     Keyboard.dismiss();
   };
