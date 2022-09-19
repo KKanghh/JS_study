@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {
   View,
   Text,
@@ -10,6 +10,13 @@ import {
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 function TodoItem({id, text, done, onToggle, onRemove}) {
+  useEffect(() => {
+    console.log('컴포넌트가 마운트될 때 출력됨');
+    return () => {
+      console.log('컴포넌트가 언마운트될 때 출력됨');
+    };
+  }, []);
+
   const remove = () => {
     Alert.alert(
       '삭제',
