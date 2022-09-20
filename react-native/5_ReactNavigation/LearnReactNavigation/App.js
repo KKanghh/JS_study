@@ -1,65 +1,25 @@
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
-import {View, Text, SafeAreaView, Button} from 'react-native';
-import {createDrawerNavigator} from '@react-navigation/drawer';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {Text} from 'react-native';
+import Icon from 'react-native-vector-icons/MaterialIcons';
+import MainScreen from './screens/MainScreen';
+import DetailScreen from './screens/DetailScreen';
+// import {SafeAreaView} from 'react-native-safe-area-context';
 
-function HomeScreen({navigation}) {
-  return (
-    <View>
-      <Text>Home</Text>
-      <Button title="Drawer 열기" onPress={() => navigation.openDrawer()} />
-      <Button
-        title="Setting 열기"
-        onPress={() => navigation.navigate('Setting')}
-      />
-    </View>
-  );
-}
-
-function SettingScreen({navigation}) {
-  return (
-    <View>
-      <Text>Setting</Text>
-      <Button title="뒤로가기" onPress={() => navigation.goBack()} />
-    </View>
-  );
-}
-
-const Drawer = createDrawerNavigator();
+const Stack = createNativeStackNavigator();
 
 function App() {
   return (
     <NavigationContainer>
-      <Drawer.Navigator
-        initialRouteName="Home"
-        drawerPosition="left"
-        backBehavior="history"
-        screenOptions={{headerShown: false}}
-        drawerContent={({navigation}) => (
-          <SafeAreaView>
-            <Text>A Custom Drawer</Text>
-            <Button
-              onPress={() => navigation.closeDrawer()}
-              title="Drawer 닫기"
-            />
-          </SafeAreaView>
-        )}
-        // screenOptions={{
-        //   drawerActiveBackgroundColor: '#fb8c00',
-        //   drawerActiveTintColor: 'white',
-        // }}
-      >
-        <Drawer.Screen
-          name="Home"
-          component={HomeScreen}
-          options={{title: '홈', headerLeft: () => <Text>Left</Text>}}
+      <Stack.Navigator>
+        <Stack.Screen
+          name="Main"
+          component={MainScreen}
+          options={{headerShown: false}}
         />
-        <Drawer.Screen
-          name="Setting"
-          component={SettingScreen}
-          options={{title: '설정'}}
-        />
-      </Drawer.Navigator>
+        <Stack.Screen name="Detail" component={DetailScreen} />
+      </Stack.Navigator>
     </NavigationContainer>
   );
 }
