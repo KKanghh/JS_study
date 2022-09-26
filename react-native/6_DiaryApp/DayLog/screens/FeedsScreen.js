@@ -1,27 +1,20 @@
 import React, {useContext} from 'react';
 import {StyleSheet, View, Text, TextInput} from 'react-native';
+import FloatingWriteButton from '../components/FloatingWriteButton';
 import LogContext from '../contexts/LogContext';
 
 function FeedsScreen() {
-  const {text, setText} = useContext(LogContext);
+  const {logs} = useContext(LogContext);
+  console.log(JSON.stringify(logs, null, 2));
   return (
     <View style={styles.block}>
-      <TextInput
-        value={text}
-        onChangeText={setText}
-        placeholder="텍스트를 입력하세요."
-        style={styles.input}
-      />
+      <FloatingWriteButton />
     </View>
   );
 }
 
-function Box({children}) {
-  return <View style={styles.box}>{children('Hello World')}</View>;
-}
-
 const styles = StyleSheet.create({
-  block: {},
+  block: {flex: 1},
   box: {
     borderWidth: 2,
     padding: 16,
