@@ -1,11 +1,29 @@
 import {useNavigation} from '@react-navigation/native';
 import {format} from 'date-fns';
 import {ko} from 'date-fns/locale';
-import React, {useState} from 'react';
+import React, {useReducer} from 'react';
 import {Pressable, StyleSheet, Text, View} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import TransparentCircleButton from './TransparentCircleButton';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
+
+const initialState = {mode: 'date', visible: false};
+function reducer(state, action) {
+  switch (action.type) {
+    case 'open':
+      return {
+        mode: action.mode,
+        visible: true,
+      };
+    case 'close':
+      return {
+        ...state,
+        visible: false,
+      };
+    default:
+      throw new Error('Unhandled action type');
+  }
+}
 
 function WriteHeader({onSave, onAskRemove, isEditing, date, onChangeDate}) {
   const navigation = useNavigation();
@@ -14,26 +32,13 @@ function WriteHeader({onSave, onAskRemove, isEditing, date, onChangeDate}) {
     navigation.pop();
   };
 
-  const [mode, setMode] = useState('date');
-  const [visible, setVisible] = useState(false);
-
-  const onPressDate = () => {
-    setMode('date');
-    setVisible(true);
-  };
-
-  const onPressTime = () => {
-    setMode('time');
-    setVisible(true);
-  };
+  const [state, dispatch] = useReducer(reducer, initialState);
+  const open = mode => dispatch({type: 'open', mode});
+  const close = () => dispatch({type: 'close'});
 
   const onConfirm = selectedDate => {
-    setVisible(false);
+    close();
     onChangeDate(selectedDate);
-  };
-
-  const onCancel = () => {
-    setVisible(false);
   };
 
   return (
@@ -65,7 +70,7 @@ function WriteHeader({onSave, onAskRemove, isEditing, date, onChangeDate}) {
         </View>
       </View>
       <View style={styles.center}>
-        <Pressable onPress={onPressDate}>
+        <Pressable onPress={() => open('date')}>
           <Text>
             {format(new Date(date), 'PPP', {
               locale: ko,
@@ -73,7 +78,7 @@ function WriteHeader({onSave, onAskRemove, isEditing, date, onChangeDate}) {
           </Text>
         </Pressable>
         <View style={styles.separator} />
-        <Pressable onPress={onPressTime}>
+        <Pressable onPress={() => open('time')}>
           <Text>{format(new Date(date), 'p', {locale: ko})}</Text>
         </Pressable>
       </View>
