@@ -83,10 +83,10 @@ function WriteHeader({onSave, onAskRemove, isEditing, date, onChangeDate}) {
         </Pressable>
       </View>
       <DateTimePickerModal
-        isVisible={visible}
-        mode={mode}
+        isVisible={state.visible}
+        mode={state.mode}
         onConfirm={onConfirm}
-        onCancel={onCancel}
+        onCancel={close}
         date={date}
       />
     </View>
