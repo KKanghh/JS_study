@@ -11,6 +11,8 @@ export function createUser({id, displayName, photoURL}) {
 }
 
 export async function getUser(id) {
+  console.log('a');
   const doc = await usersCollection.doc(id).get();
+  console.log('b');
   return doc.data();
 }
