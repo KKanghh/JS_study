@@ -45,7 +45,6 @@ function SignInScreen({navigation, route}) {
       const {user} = isSignUp ? await signUp(info) : await signIn(info);
       console.log(user.uid);
       const profile = await getUser(user.uid);
-      console.log(3);
       if (!profile) {
         navigation.navigate('Welcome', {uid: user.uid});
       } else {
