@@ -50,7 +50,7 @@ function SignInScreen({navigation, route}) {
       } else {
         setUser(profile);
       }
-      console.log(user);
+      console.log('profile: ', profile);
     } catch (e) {
       console.log(e);
       const messages = {

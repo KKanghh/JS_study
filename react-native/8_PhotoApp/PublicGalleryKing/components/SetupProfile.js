@@ -51,8 +51,11 @@ function SetupProfile() {
       displayName,
       photoURL,
     };
+    console.log(1);
     createUser(user);
+    console.log(2);
     setUser(user);
+    console.log(3);
   };
 
   const onCancel = () => {

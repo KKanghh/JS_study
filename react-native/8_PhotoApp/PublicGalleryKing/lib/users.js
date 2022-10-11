@@ -23,6 +23,7 @@ export async function getUser(id) {
   const data = await response.json();
   for (const key in data) {
     if (data[key].id === id) {
+      console.log('hi', data[key]);
       return data[key];
     }
   }
